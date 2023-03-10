@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "tpangular3-guendour-grange": {
+      "hosting": {
+        "Miahoot": [
+          "tpangular3-guendour-grange"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "tpangular3-guendour-grange"
+  }
+}
