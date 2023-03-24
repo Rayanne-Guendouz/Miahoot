@@ -303,12 +303,31 @@
 </style>
 
 <!-- Toolbar -->
-<mat-toolbar-row>
+<mat-toolbar>
+  <button mat-icon-button class="menu-icon" [matMenuTriggerFor]="Menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #Menu="matMenu">
+    <ng-template matMenuContent>
+      <button mat-menu-item>Settings</button>
+      <button mat-menu-item>Help</button>
+    </ng-template>
+  </mat-menu>
   <span>BARRE</span>
+  <span class = "spacer"></span>
   <section>
-      <button mat-stroked-button color="Warn">Connect</button>
+      <code>{{ (user | async)?.displayName }}</code>
+      <button id="ppButton" [matMenuTriggerFor] ="menu" *ngIf="showLogoutButton">
+        <img id = "pp" [src]="(user | async)?.photoURL"><img>
+      </button>
+      <mat-menu #menu = "matMenu">
+        <button mat-menu-item (click)="toAccountConfig()" *ngIf="showLogoutButton">My Account</button>
+        <button mat-menu-item (click)="logout()" *ngIf="showLogoutButton"> Log Out</button>
+      </mat-menu>
+      <button (click)="login()" *ngIf="showLoginButton">Log in with Google</button>
   </section>
-</mat-toolbar-row>
+  <mat-progress-spinner *ngIf="bsIsAuth |async" mode ="indeterminate"> </mat-progress-spinner>
+</mat-toolbar>
 
 <h1>
   Bienvenue 42
